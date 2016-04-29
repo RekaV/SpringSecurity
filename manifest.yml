@@ -1,0 +1,15 @@
+---
+applications:
+- name: eda-web-service
+  memory: 1024M
+  host: eda-new-service
+  domain: mybluemix.net
+  env:
+    m_databasename: eda-database
+    m_dbpass: kgfsl
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  services:
+  - MongoLab-3s
+  - Natural Language Classifier-3n
+  - SendGrid-ey
+  - Object Storage-as

@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<flow>
+		<folder label="Main">
+			<output>
+				<prompt selectionType="RANDOM">
+					<item>Hi, I can help you to buy a travel insurance, what kind of
+						plan would you like?
+					</item>
+				</prompt>
+				<goto ref="getUserInput_2442994" />
+			</output>
+			<output>
+				<prompt selectionType="SEQUENTIAL">
+					<item>what kind of plan would you like?</item>
+				</prompt>
+				<getUserInput id="getUserInput_2442994">
+					<search ref="folder_2442998" />
+					<default>
+						<output>
+							<prompt selectionType="RANDOM">
+								<item>I'm sorry I did not understand your question. All I can do
+									is help you buy aa travel insurance...
+								</item>
+								<item>I did not quite get that.</item>
+								<item>I didnt grasp what you said.</item>
+								<item>I'm not following you at the moment.</item>
+							</prompt>
+						</output>
+					</default>
+				</getUserInput>
+			</output>
+		</folder>
+
+		<folder label="Library">
+			<folder label="Live Content" id="folder_2442998">
+				<input>
+					<grammar>
+						<item>What do you have?</item>
+						<item>$ What * do you have</item>
+						<item>$ what * do you carry</item>
+						<item>$ What * is there</item>
+						<item>$ What are my choices</item>
+						<item>$ do you have *</item>
+						<item>$ which * do you have</item>
+					</grammar>
+					<input>
+						<grammar>
+							<item>$ (Plan)</item>
+							<item>plan</item>
+							<item>plans</item>
+						</grammar>
+						<output>
+							<prompt selectionType="RANDOM">
+								<item>We have platinum, gold, silver</item>
+							</prompt>
+						</output>
+					</input>
+
+					<output>
+						<prompt selectionType="RANDOM">
+							<item>We have platinum, gold, silver.</item>
+						</prompt>
+					</output>
+				</input>
+				<input>
+					<grammar>
+						<item>I want a silver plan</item>
+						<item>$ (Plan)={plan}</item>
+					</grammar>
+
+					<output id="output_1">
+						<prompt selectionType="SEQUENTIAL">
+							<item>OK. I will need some information from you</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>yes</item>
+									<item>$ ok</item>
+									<item>$ ya</item>
+									<item>$ yess</item>
+									<item>$ k</item>
+								</grammar>
+								<output id="output_2">
+									<prompt selectionType="SEQUENTIAL">
+										<item>What is your name?</item>
+									</prompt>
+									<getUserInput>
+										<input>
+											<grammar>
+												<item>My name is</item>
+												<item>$ name is</item>
+												<item>$ me</item>
+												<item>$ myself</item>
+												<item>$ name</item>
+												<item>$ i am</item>
+											</grammar>
+											<output id="output_3">
+												<prompt selectionType="SEQUENTIAL">
+													<item>What is your age?</item>
+												</prompt>
+												<getUserInput>
+													<input>
+														<grammar>
+															<item>My age is</item>
+															<item>$ age</item>
+															<item>$ age is</item>
+															<item>$ i am</item>
+														</grammar>
+														<goto ref="output_4"></goto>
+													</input>
+												</getUserInput>
+											</output>
+										</input>
+									</getUserInput>
+								</output>
+
+							</input>
+
+						</getUserInput>
+						<action varName="plan" operator="SET_TO">{plan.value:main}</action>
+
+					</output>
+
+					<output id="output_4">
+						<prompt selectionType="SEQUENTIAL">
+							<item>What is youe gender?</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>My gender is</item>
+									<item>$ gender is</item>
+									<item>$ gender</item>
+									<item>$ male</item>
+									<item>$ female</item>
+									<item>$ other</item>
+								</grammar>
+								<goto ref="output_5"></goto>
+							</input>
+						</getUserInput>
+					</output>
+					<output id="output_5">
+						<prompt selectionType="SEQUENTIAL">
+							<item>Tell me your mobile number</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>my mobile number is</item>
+									<item>$ number</item>
+									<item>$ number is</item>
+								</grammar>
+								<goto ref="output_6"></goto>
+							</input>
+						</getUserInput>
+					</output>
+					<output id="output_6">
+						<prompt selectionType="SEQUENTIAL">
+							<item>Tell me your email id</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>my email id is</item>
+									<item>$ email id is</item>
+									<item>$ mail id is</item>
+									<item>$ my id is</item>
+									<item>$ my id</item>
+									<item>$ id is</item>
+									<item>$ email id</item>
+								</grammar>
+								<goto ref="output_7"></goto>
+							</input>
+						</getUserInput>
+					</output>
+					<output id="output_7">
+						<prompt selectionType="SEQUENTIAL">
+							<item>Do you need a single or multiple passenger policy?</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>i need</item>
+									<item>$ i want</item>
+									<item>$ single</item>
+									<item>$ multiple</item>
+								</grammar>
+								<goto ref="output_8"></goto>
+							</input>
+						</getUserInput>
+					</output>
+					<output id="output_8">
+						<prompt selectionType="SEQUENTIAL">
+							<item>Please say the destination</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>destination is</item>
+									<item>$ destination</item>
+								</grammar>
+								<goto ref="output_9"></goto>
+							</input>
+						</getUserInput>
+					</output>
+
+					<output id="output_9">
+						<prompt selectionType="SEQUENTIAL">
+							<item>Please say the departure date</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>departure date is</item>
+									<item>$ departure date</item>
+									<item>$ date is</item>
+									<item>$ date</item>
+								</grammar>
+								<goto ref="output_10"></goto>
+							</input>
+						</getUserInput>
+					</output>
+					<output id="output_10">
+						<prompt selectionType="SEQUENTIAL">
+							<item>Please say the arrival date</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>arrival date is</item>
+									<item>$ arrival date</item>
+									<item>$ date is</item>
+									<item>$ date </item>
+									<item>$ arriving on</item>
+								</grammar>
+								<goto ref="output_2469831"></goto>
+							</input>
+						</getUserInput>
+					</output>
+
+
+					<output id="output_2469831">
+						<prompt selectionType="RANDOM">
+							<item>Do you prefer buy or not?</item>
+						</prompt>
+						<getUserInput>
+							<input>
+								<grammar>
+									<item>I prefer buy</item>
+									<item>$ buy</item>
+									<item>$ buy it</item>
+									<item>$ buy it up</item>
+									<item>$ purchase</item>
+									<item>$ purchase it up</item>
+									<item>$ want</item>
+								</grammar>
+								<action varName="method" operator="SET_TO">buy</action>
+								<goto ref="profileCheck_2469744" />
+							</input>
+							<input>
+								<grammar>
+									<item>I dont want it</item>
+									<item>$ dont want</item>
+									<item>$ dont want to buy</item>
+									<item>$ not buy</item>
+									<item>$ not buying</item>
+									<item>$ not bought</item>
+								</grammar>
+								<action varName="method" operator="SET_TO">delivery</action>
+								<goto ref="profileCheck_2469744" />
+							</input>
+						</getUserInput>
+					</output>
+				</input>
+				<folder label="Check Out">
+					<if id="profileCheck_2469744">
+						<cond varName="method" operator="HAS_VALUE" />
+						<cond varName="plan" operator="HAS_VALUE" />
+						<output>
+							<prompt selectionType="RANDOM">
+								<item>Ok, I will buy {plan} plan.
+									Is that correct?
+								</item>
+							</prompt>
+							<getUserInput id="getUserInput_2469815">
+								<input>
+									<grammar>
+										<item>yes</item>
+										<item>$ yes</item>
+										<item>$ yep</item>
+										<item>$ yup</item>
+										<item>$ good</item>
+									</grammar>
+									<output>
+										<prompt selectionType="RANDOM">
+											<item>Sounds good! Your insurance information will be
+												submitted. Do
+												you want to buy another?
+											</item>
+										</prompt>
+										<getUserInput>
+											<input>
+												<grammar>
+													<item>$ yes</item>
+													<item>$ yeah</item>
+													<item>$ yep</item>
+													<item>$ yup</item>
+												</grammar>
+												<output>
+													<prompt selectionType="RANDOM">
+														<item>Okay, let's buy a insurance! What kinds of plan
+															would you like?
+														</item>
+													</prompt>
+													<action varName="method" operator="SET_TO_BLANK" />
+													<action varName="plan" operator="SET_TO_BLANK" />
+													<goto ref="getUserInput_2442994" />
+												</output>
+											</input>
+											<input>
+												<grammar>
+													<item>$ no</item>
+												</grammar>
+												<output>
+													<prompt selectionType="RANDOM">
+														<item>Okay, thank you for your purchase! Just let me know
+															if
+															you want to buy another plans.
+														</item>
+													</prompt>
+													<goto ref="getUserInput_2442994">
+														<action varName="method" operator="SET_TO_BLANK" />
+														<action varName="plan" operator="SET_TO_BLANK" />
+													</goto>
+												</output>
+											</input>
+										</getUserInput>
+									</output>
+								</input>
+								<input>
+									<grammar>
+										<item>no</item>
+										<item>$ no</item>
+									</grammar>
+									<output>
+										<prompt selectionType="RANDOM">
+											<item>Oops! Let's start over. What plan would you like?
+											</item>
+										</prompt>
+										<goto ref="getUserInput_2442994">
+											<action varName="method" operator="SET_TO_BLANK" />
+											<action varName="plan" operator="SET_TO_BLANK" />
+										</goto>
+									</output>
+								</input>
+							</getUserInput>
+						</output>
+					</if>
+					<output>
+						<prompt selectionType="RANDOM">
+							<item>Your request is incomplete. </item>
+						</prompt>
+						<if>
+							<cond varName="plan" operator="IS_BLANK" />
+							<output>
+								<prompt selectionType="RANDOM">
+									<item>What plan would you like?</item>
+								</prompt>
+								<getUserInput>
+									<input>
+										<grammar>
+											<item>$ (Plan)={plan}</item>
+										</grammar>
+										<output>
+											<prompt />
+											<action varName="plan" operator="SET_TO">{plan.value:main}
+											</action>
+											<goto ref="profileCheck_2469744" />
+										</output>
+									</input>
+								</getUserInput>
+							</output>
+						</if>
+						<if>
+							<cond varName="method" operator="IS_BLANK" />
+							<goto ref="output_2469831" />
+						</if>
+					</output>
+				</folder>
+			</folder>
+		</folder>
+		<folder label="Global" />
+		<folder label="Concepts">
+			<concept>
+				<grammar>
+					<item>Travel insurance</item>
+					<item>insurance</item>
+					<item>travel</item>
+					<item>insurance for travel</item>
+					<item>insurance travel</item>
+				</grammar>
+			</concept>
+			<concept>
+				<grammar>
+					<item>Type</item>
+					<item>kind</item>
+					<item>sort</item>
+					<item>variety</item>
+					<item>types</item>
+					<item>kinds</item>
+					<item>sorts</item>
+					<item>varieties</item>
+				</grammar>
+			</concept>
+			<concept>
+				<grammar>
+					<item>sure</item>
+					<item>certain</item>
+					<item>definite</item>
+					<item>positive</item>
+				</grammar>
+			</concept>
+			<concept>
+				<grammar>
+					<item>No</item>
+					<item>absolutely not</item>
+					<item>apparently not</item>
+					<item>Are not</item>
+					<item>By no means</item>
+					<item>Certainly not</item>
+					<item>Definitely not</item>
+					<item>Hardly</item>
+					<item>Heck no</item>
+					<item>Hell no</item>
+					<item>I suppose not</item>
+					<item>Negative</item>
+					<item>never </item>
+					<item>nix  </item>
+					<item>no no</item>
+					<item>no no no</item>
+					<item>No not at all</item>
+					<item>No not really</item>
+					<item>No thank you</item>
+					<item>no thanks</item>
+					<item>No way</item>
+					<item>Non</item>
+					<item>None</item>
+					<item>nope</item>
+					<item>not at all  </item>
+					<item>not by any means</item>
+					<item>Not completely</item>
+					<item>Not especially</item>
+					<item>Not particularly</item>
+					<item>not really</item>
+					<item>not right now</item>
+					<item>Not that I know of</item>
+					<item>of course not</item>
+					<item>please no</item>
+					<item>probably not</item>
+					<item>nopeity-nope-nope</item>
+					<item>n-n-n-no</item>
+					<item>n-o</item>
+				</grammar>
+			</concept>
+			<concept
+				description="OI 15/7/11: Item &quot;Sure&quot; was removed from this list as it was causing issues with matches when two different input nodes had &quot;I am not sure&quot; and &quot;$ yes&quot;.  OI: 4/8/11: &quot;fine&quot; and &quot;Good&quot; were removed as well  MO 18/10/12 removed &quot;all right&quot; and &quot;alright&quot; as they were causing conflict in perfect boyfriend  MO 29/10/12 removed &quot;always&quot;">
+				<grammar>
+					<item>yes</item>
+					<item>Absolutely</item>
+					<item>absolutely correct</item>
+					<item>absolutely yes</item>
+					<item>Affirmative</item>
+					<item>affirmative yes</item>
+					<item>Ah yes</item>
+					<item>Apparently</item>
+					<item>Apparently so</item>
+					<item>As far as I know</item>
+					<item>aye</item>
+					<item>by all means </item>
+					<item>certainly</item>
+					<item>Completely</item>
+					<item>Constantly</item>
+					<item>Correct</item>
+					<item>dam right</item>
+					<item>damn right</item>
+					<item>Definite</item>
+					<item>Definitely</item>
+					<item>Especially</item>
+					<item>Evidently</item>
+					<item>exactly</item>
+					<item>Extremely</item>
+					<item>For sure</item>
+					<item>Fully</item>
+					<item>Generally</item>
+					<item>gladly  </item>
+					<item>good enough</item>
+					<item>granted</item>
+					<item>heck yes</item>
+					<item>Hell yes</item>
+					<item>I believe so</item>
+					<item>I decided yes</item>
+					<item>I think so</item>
+					<item>In this case</item>
+					<item>indeed</item>
+					<item>Ja</item>
+					<item>Most definitely</item>
+					<item>naturally</item>
+					<item>of course </item>
+					<item>Okie dokie</item>
+					<item>Oui</item>
+					<item>please yes</item>
+					<item>positively</item>
+					<item>positively yes</item>
+					<item>precisely</item>
+					<item>right on</item>
+					<item>Si</item>
+					<item>spot on</item>
+					<item>sure thing</item>
+					<item>surely</item>
+					<item>Uh huh</item>
+					<item>uh-huh</item>
+					<item>undoubtedly</item>
+					<item>unquestionably</item>
+					<item>very well  </item>
+					<item>why yes</item>
+					<item>willingly</item>
+					<item>without fail</item>
+					<item>word</item>
+					<item>yah</item>
+					<item>yeah</item>
+					<item>yep</item>
+					<item>yes please</item>
+					<item>Yes really</item>
+					<item>Yes right</item>
+					<item>Yes sometimes</item>
+					<item>Yes sure</item>
+					<item>yes yes</item>
+					<item>yes yes yes</item>
+					<item>Yes you</item>
+					<item>you bet</item>
+					<item>you got it</item>
+					<item>yup</item>
+					<item>yyeah</item>
+					<item>yyep</item>
+					<item>yyes</item>
+					<item>yyyyyyyyyyyyyyyyesssssss</item>
+					<item>yuup</item>
+					<item>yuupp</item>
+					<item>yuur</item>
+					<item>yuuu</item>
+					<item>yuuup</item>
+					<item>yuuupppp</item>
+					<item>yus</item>
+					<item>yuperoo</item>
+					<item>yuperz</item>
+					<item>yupidydoda</item>
+					<item>yupiii</item>
+					<item>yupo</item>
+					<item>yupp</item>
+					<item>yuppers</item>
+					<item>yupperz</item>
+					<item>yuppie</item>
+					<item>yuppp</item>
+					<item>yuppper</item>
+					<item>yupppers</item>
+					<item>yupppp</item>
+					<item>yupppppp</item>
+					<item>yups</item>
+					<item>yupyup</item>
+					<item>yupz</item>
+					<item>yupzz</item>
+					<item>yesz</item>
+					<item>yesyes</item>
+					<item>yesyesyes</item>
+					<item>yesyesyesyes</item>
+					<item>yesyesyesyesyes</item>
+					<item>yesyesyesyesyesyes</item>
+					<item>yesyesyesyesyesyesyes</item>
+					<item>yez</item>
+					<item>yezz</item>
+					<item>yezzir</item>
+					<item>yha</item>
+					<item>yipyesg</item>
+					<item>yesh</item>
+					<item>yeshum</item>
+					<item>yeshums</item>
+					<item>yesi i</item>
+					<item>yesish</item>
+					<item>yesit it</item>
+					<item>yesly</item>
+					<item>yesm</item>
+					<item>yesn</item>
+					<item>yesq</item>
+					<item>yess</item>
+					<item>yesseess</item>
+					<item>yesshhh</item>
+					<item>yessiere</item>
+					<item>yessin</item>
+					<item>yessir</item>
+					<item>yessiree</item>
+					<item>yessireeee</item>
+					<item>yessm</item>
+					<item>yesss</item>
+					<item>yessss</item>
+					<item>yessum</item>
+					<item>yeper</item>
+					<item>yeperdoodles</item>
+					<item>yepers</item>
+					<item>yeples</item>
+					<item>yepo</item>
+					<item>yepp</item>
+					<item>yeppah</item>
+					<item>yepper</item>
+					<item>yeppers</item>
+					<item>yepperz</item>
+					<item>yeppie</item>
+					<item>yeppo</item>
+					<item>yeppp</item>
+					<item>yeppppppp</item>
+					<item>yepppppppppppppppppppppp</item>
+					<item>yeppurs</item>
+					<item>yeppy</item>
+					<item>yeppz</item>
+					<item>yeps</item>
+					<item>yepsiree</item>
+					<item>yepster</item>
+					<item>yepyep</item>
+					<item>yepyepyepyepyepyepy</item>
+					<item>yepz</item>
+					<item>yer</item>
+					<item>yeess</item>
+					<item>yeesss</item>
+					<item>yeessss</item>
+					<item>yeesssss</item>
+					<item>yehh</item>
+					<item>yehhh</item>
+					<item>yehhhh</item>
+					<item>yeh</item>
+					<item>yehhhhhhhhh</item>
+					<item>yerr</item>
+					<item>yerrr</item>
+					<item>yerrrr</item>
+					<item>yeea</item>
+					<item>yeeaaah</item>
+					<item>yeeaah</item>
+					<item>yeeaahh</item>
+					<item>yeeaahhh</item>
+					<item>yeeah</item>
+					<item>yeeargh</item>
+					<item>yeeeah</item>
+					<item>yeeeeaaaaaaah</item>
+					<item>yeeeeaaaaahhh</item>
+					<item>yeeeeaaah</item>
+					<item>yeeeeah</item>
+					<item>yeeeee</item>
+					<item>yeeeeeah</item>
+					<item>sure</item>
+				</grammar>
+			</concept>
+			<concept>
+				<grammar>
+					<item>I would like</item>
+					<item>I want</item>
+					<item>Give me</item>
+					<item>Lets do</item>
+					<item>I choose</item>
+				</grammar>
+			</concept>
+		</folder>
+	</flow>
+	<entities>
+		<entity name="Plan">
+			<value name="gold" value="gold">
+				<grammar>
+					<item>old</item>
+				</grammar>
+			</value>
+			<value name="silver" value="silver">
+				<grammar>
+					<item>ilver</item>
+				</grammar>
+			</value>
+
+			<value name="platinum" value="platinum">
+				<grammar>
+					<item>latinum</item>
+				</grammar>
+			</value>
+		</entity>
+	</entities>
+	<constants>
+		<var_folder name="Home">
+			<var_folder name="General" type="CONST">
+				<var name="VA" type="TAG" description="Name of the virtual agent">Peppe</var>
+			</var_folder>
+		</var_folder>
+	</constants>
+	<variables>
+		<var_folder name="Home">
+			<var name="plan" type="TEXT" description="gold, silver, platinum" />
+			<var name="method" type="TEXT" description="buy or not" />
+		</var_folder>
+	</variables>
+	<settings>
+		<setting name="USERIDNUM" type="USER">759</setting>
+		<setting name="EMAIL" type="USER"></setting>
+		<setting name="PASSWORD" type="USER"></setting>
+		<setting name="FIRSTNAME" type="USER">IBM</setting>
+		<setting name="LASTNAME" type="USER">Watson</setting>
+		<setting name="COUNTRY" type="USER">USA</setting>
+		<setting name="STATE" type="USER">NY State</setting>
+		<setting name="CITY" type="USER">NY</setting>
+		<setting name="BDAY" type="USER">1</setting>
+		<setting name="BMONTH" type="USER">1</setting>
+		<setting name="BYEAR" type="USER">2000</setting>
+		<setting name="SEX" type="USER">Male</setting>
+		<setting name="DISPLAYNAME" type="USER">IBM Watson</setting>
+		<setting name="PROVIDESECURITYPASSWORD" type="USER">false</setting>
+		<setting name="SECURITYPASSWORD" type="USER"></setting>
+		<setting name="SHOWPERSPROFILE" type="USER">false</setting>
+		<setting name="USETYPE" type="USER">0</setting>
+		<setting name="DATEJOINED" type="USER">2015-08-07 16:27:53.281
+		</setting>
+		<setting name="LASTLOGIN" type="USER">2015-08-07 16:27:53.281
+		</setting>
+		<setting name="LOGINCOUNT" type="USER">0</setting>
+		<setting name="CREDIT" type="USER">100</setting>
+		<setting name="CONVCOUNT" type="USER">4</setting>
+		<setting name="PERSONALITYTYPEID" type="USER">0</setting>
+		<setting name="SHOWSENDMESSAGE" type="USER">true</setting>
+		<setting name="ACTIVATED" type="USER">true</setting>
+		<setting name="MESSENGEREMAIL" type="USER"></setting>
+		<setting name="MESSENGERPASSWORD" type="USER"></setting>
+		<setting name="SENDCHATEMAIL" type="USER">true</setting>
+		<setting name="SENDFAVEMAIL" type="USER">true</setting>
+		<setting name="CACHE" type="USER">true</setting>
+		<setting name="CLASSTYPE" type="USER">3</setting>
+		<setting name="AUTOLEARN" type="USER">false</setting>
+		<setting name="LANGUAGE" type="USER">EN</setting>
+		<setting name="RESPONSETIME" type="USER">-2</setting>
+		<setting name="MAXAUTOLEARNITEMS" type="USER">0</setting>
+		<setting name="NUMAUTOSETRELATED" type="USER">0</setting>
+		<setting name="TIMEZONEID" type="USER">Australia/Sydney</setting>
+		<setting name="AUTOSETRELATEDNODEID" type="USER">0</setting>
+		<setting name="RETURNTOCHATNODEID" type="USER">0</setting>
+		<setting name="INPUTMASKTYPE" type="USER">0</setting>
+		<setting name="NUMLOGINATTEMPTS" type="USER">0</setting>
+		<setting name="CONCEPTMATCHING" type="USER">0</setting>
+		<setting name="UI_COLOUR"></setting>
+		<setting name="USE_CONCEPTS">3</setting>
+		<setting name="PARENT_ACCOUNT">parentconcepts</setting>
+		<setting name="AL_NONE_LABEL">None of the above</setting>
+		<setting name="ASR_RANDOM">true</setting>
+		<setting name="DYNAMIC_MESSAGING">false</setting>
+		<setting name="DOCBASE_NUM_RESULTS">3</setting>
+		<setting name="DOCBASE_DESC_LEN">250</setting>
+		<setting name="STATUS">0</setting>
+		<setting name="DEFAULT_DNR_RETURN_POINT_CANDIDATE">-1</setting>
+		<setting name="ENTITIES_SCOPE">3</setting>
+		<setting name="POSTNODEID"></setting>
+		<setting name="MULTISENT">0</setting>
+		<setting name="DNR_NODE_ID">-15</setting>
+		<setting name="CLEARCACHE">sd6pprd-dfd2 sd6pprd-1e75</setting>
+	</settings>
+	<specialSettings>
+		<specialSetting label="DNR Join Statement">
+			<variations />
+		</specialSetting>
+	</specialSettings>
+</dialog>
